@@ -162,3 +162,7 @@ cython_debug/
 #.idea/
 
 .vscode/
+
+node_modules/
+
+*.map
