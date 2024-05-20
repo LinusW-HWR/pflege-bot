@@ -1,7 +1,7 @@
 let currentRequestId = null;
 
 function reloadRequests() {
-    fetch('/api', {
+    fetch('/request', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -72,7 +72,7 @@ function getSendButton(requestId) {
 }
 
 function handleSendRobot(requestId) {
-    fetch(`/api/request?id=${requestId}`, {
+    fetch(`/request?id=${requestId}`, {
         method: 'GET'
     })
     .then(response => response.json())
@@ -85,7 +85,7 @@ function handleSendRobot(requestId) {
 }
 
 function sendRobot(room) {
-    fetch(`/api/send_robot?room_id=${room}`, {
+    fetch(`/robot/send?room_id=${room}`, {
         method: 'PUT'
     })
     .then(response => response.json())
@@ -99,8 +99,8 @@ function sendRobot(room) {
 }
 
 function updateRequestStatus(requestId, status) {
-    fetch(`/api/update_req?id=${requestId}&status=${status}`, {
-        method: 'POST'
+    fetch(`/request/update?id=${requestId}&status=${status}`, {
+        method: 'PUT'
     })
     .then(response => response.json())
     .catch(error => console.error('Error:', error));
@@ -113,7 +113,7 @@ function sendHomeYesButtonListener() {
 }
 
 function sendHome(requestId) {
-    fetch(`/api/send_robot?room_id=0`, {
+    fetch(`/robot/send?room_id=0`, {
         method: 'PUT'
     })
     .then(response => response.json())
@@ -143,7 +143,7 @@ function confirmCreateRequestButtonListener() {
 
     var request = { name, room, type, medicine };
 
-    fetch('/api/request', {
+    fetch('/request/add', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

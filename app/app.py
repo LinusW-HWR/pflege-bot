@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request, Response
 from flask_bootstrap import Bootstrap
 from flask_socketio import SocketIO
-from .api import api_blueprint
+from .robot import robot_blueprint
+from .reqs import reqs_blueprint
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
 
-app.register_blueprint(api_blueprint, url_prefix='/api')
+app.register_blueprint(robot_blueprint, url_prefix='/robot')
+app.register_blueprint(reqs_blueprint, url_prefix='/request')
 
 USERNAME = 'admin'
 PASSWORD = 'cake'
@@ -29,3 +31,5 @@ def admin():
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5001)
+
+
