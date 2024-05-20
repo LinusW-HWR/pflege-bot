@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, Response
 from flask_bootstrap import Bootstrap
 from flask_socketio import SocketIO
-from api import api_blueprint
+from .api import api_blueprint
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
