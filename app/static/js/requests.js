@@ -85,7 +85,7 @@ function handleSendRobot(requestId) {
 }
 
 function sendRobot(room) {
-    fetch(`/robot/send?room_id=${room}`, {
+    fetch(`/robot/send?room=${room}`, {
         method: 'PUT'
     })
     .then(response => response.json())
@@ -113,7 +113,7 @@ function sendHomeYesButtonListener() {
 }
 
 function sendHome(requestId) {
-    fetch(`/robot/send?room_id=0`, {
+    fetch(`/robot/send?room=base`, {
         method: 'PUT'
     })
     .then(response => response.json())

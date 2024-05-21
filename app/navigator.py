@@ -2,7 +2,17 @@ import subprocess
 import yaml
 
 
-rooms = None
+
+def load_rooms():
+    with open("room_cords.yaml", 'r') as yaml_file:
+        return yaml.safe_load(yaml_file)
+
+def load_base():
+    with open("base_cords.yaml", 'r') as yaml_file:
+        return yaml.safe_load(yaml_file)
+
+rooms = load_rooms()
+base = load_base()
 
 def run_navigation(x, y, z, w):
     x = str(x)
@@ -20,14 +30,13 @@ def run_navigation(x, y, z, w):
         [python_interpreter, python_script, x, y, z, w])
     
 
-def navigate_to_room(room: int):
+def navigate_to_room(room: str):
     global rooms
     
-    if rooms is None:    
-        with open("room_cords.yaml", 'r') as yaml_file:
-            rooms = yaml.safe_load(yaml_file)
-    
-    room_cords = rooms[f"room{room}"]
+    if room == "base":
+        room_cords = base
+    else:
+        room_cords = rooms[room]
  
-    print(room_cords)
+    print(f"{room}: {room_cords}")
     run_navigation(room_cords["x"], room_cords["y"], room_cords["z"], room_cords["w"])
