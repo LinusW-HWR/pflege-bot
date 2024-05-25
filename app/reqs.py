@@ -7,7 +7,7 @@ reqs_blueprint = Blueprint('request', __name__)
 reqs = [{
             "id": 2,
             "name": "Helga",
-            "room": 2,
+            "room": "Raum 1",
             "type": "delivery",
             "medicine": "painkiller",
             "status": "done"
@@ -15,7 +15,7 @@ reqs = [{
         {
             "id": 1,
             "name": "Berta",
-            "room": 1,
+            "room": "Raum 2",
             "type": "collection",
             "status": "pending"
         }]

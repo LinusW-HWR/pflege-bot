@@ -98,6 +98,24 @@ function sendRobot(room) {
     .catch(error => console.error('Error:', error));
 }
 
+function sendRobotAutoCollection(){
+    var div = document.getElementById('autoCollectContainer');
+    div.innerHTML += `<div class="spinner-border text-danger" role="status"><span class="sr-only"></span></div>`;
+
+    fetch(`/robot/auto_collection`, {
+        method: 'PUT'
+    })
+    .then(response => response.json())
+    .then(() => {
+        var div = document.getElementById('autoCollectContainer');
+        var spinner = div.querySelector('.spinner-border');
+        if (spinner) {
+            spinner.remove();
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
 function updateRequestStatus(requestId, status) {
     fetch(`/request/update?id=${requestId}&status=${status}`, {
         method: 'PUT'

@@ -1,3 +1,4 @@
+from time import sleep
 import subprocess
 import yaml
 
@@ -40,3 +41,12 @@ def navigate_to_room(room: str):
  
     print(f"{room}: {room_cords}")
     run_navigation(room_cords["x"], room_cords["y"], room_cords["z"], room_cords["w"])
+    
+
+def run_auto_collection(too_include: list):
+    for room in too_include:
+        room_cords = rooms[room]
+        run_navigation(room_cords["x"], room_cords["y"], room_cords["z"], room_cords["w"])
+        sleep(5)
+
+    run_navigation(base["x"], base["y"], base["z"], base["w"])

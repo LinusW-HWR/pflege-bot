@@ -13,9 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var medicineInput = document.getElementById('medicineInput');
     medicineInput.disabled = true;
 
+
+    
     registerSocketEvents();
     reloadRequests();
     headlineAnimation();
+    if (window.location.pathname == "/admin"){
+        addAutoCollectButton();
+    }
 });
 
 function headlineAnimation() {
@@ -26,4 +31,19 @@ function headlineAnimation() {
         backDelay: 700,
         startDelay: 800
     });
+}
+
+function addAutoCollectButton(){
+    var button = document.createElement('button');
+
+    button.className = 'btn btn-danger m-3 text-white';
+
+    button.innerText = 'Run auto collection';
+
+    button.addEventListener('click', function() {
+        sendRobotAutoCollection();
+    });
+
+    var div = document.getElementById('autoCollectContainer');
+    div.appendChild(button);
 }
